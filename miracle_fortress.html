@@ -4,10 +4,68 @@
 
 <body>
   {{> hello}}
+  {{> game}}
 </body>
 
+
+
 <template name="hello">
-  <h1>Hello World!</h1>
+<div>
+  hello dear
   {{greeting}}
-  <input type="button" value="Click" />
+</div>
 </template>
+
+<template name="lobby">
+  <div>
+    {{#if show }}
+    <div id="lobby">
+      <h1>What's your name?</h1>
+      <input id="myname" type="text" />
+      {{#if count}}
+      <h1>{{count}} other players are in the lobby:</h1>
+      {{#each waiting }}
+      <div class="player">{{name}}</div>
+      {{/each}}
+      {{/if}}
+      <div>
+        <button id="startgame" class="startgame" {{{disabled}}}>
+          {{#if count}} It's on! {{else}} Play solo {{/if}}
+        </button>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</template>
+
+
+
+<template name="game">
+  <div id = 'game'>
+    {{#if show}}
+      I'm in a game now! <br>
+      prestige remaining: {{prestige_remaining}}
+      {{>board}}
+      {{#each players}}
+        <div class="player">Name:  {{name}}</div>
+      {{/each}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="board">
+This is your board: 
+{{#each rows}}
+<tr>
+  {{#each this.columns}}
+  <td>
+    <div class = "square">
+     {{this}}
+    </div>
+  </td>
+  {{/each}}
+  <br>
+</tr>
+{{/each}}
+</template>
+
