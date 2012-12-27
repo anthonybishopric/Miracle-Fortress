@@ -12,3 +12,17 @@
     background-color:#eeeee8;
     font-size: 12px;
 }
+
+.half-square {
+    cursor: pointer;
+    width:42;
+    height:84px;
+    border:4px solid #eeeee8;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    margin: 4px;
+    float:left;
+    text-align: center;
+    background-color:#eeeee8;
+    font-size: 12px;
+}

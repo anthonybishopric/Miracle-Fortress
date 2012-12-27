@@ -39,10 +39,31 @@ var map = function() {
     return map
 };
 
+var map_radius = function() {
+  game().board
+};
+
+var distance = function(tile1, tile2){
+  x_distance = Math.abs(tile1.x - tile2.x);
+  y_distance = Math.abs(tile1.y - tile2.y);
+  return (x_distance + y_distance)/2
+};
+
+var board_radius = function(){
+  max_radius = 1;
+  tiles = Tiles.find({game_id: game()._id});
+  tiles.forEach(function (tile) {
+    distance = (Math.abs(tile.x) + Math.abs(tile.y))/2;
+    if (distance > max_radius) {
+      max_radius = distance
+    };
+  });
+  return max_radius;
+};
 
   var board = function () {
-  var width = 3;
-  var height = 3;
+  var width = board_radius();
+  var height = board_radius();
     var board = {}
     board.rows = [];
     for (var row=0; row<height; row++) {
@@ -53,12 +74,14 @@ var map = function() {
         var output = "you're at row " + row + " and column " + column;
         console.log(output);
         console.log(board);
+        console.log("this is working honest");
         //board.rows[row][column]= "
         board.rows[row].columns[column] = "look at me I'm row " + row + " and column" + column;
       }
     }
     return board
-  }
+  };
+
 
 
 Template.game.show = function() {
@@ -83,6 +106,11 @@ Template.board.rows = function() {
   return board().rows;
 }
 
+Template.board.offset = function() {
+  return (this.row_number + 1) % 2;
+  //board should always have an odd number of rows, center row will always be thickest
+
+}
 
 //DON'T double-nest templates!
 

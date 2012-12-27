@@ -11,7 +11,6 @@
 
 <template name="hello">
 <div>
-  hello dear
   {{greeting}}
 </div>
 </template>
@@ -56,7 +55,10 @@
 <template name="board">
 This is your board: 
 {{#each rows}}
-<tr>
+<div name="row">
+  {{#if offset}}
+  <div class = "half-square" > offset!  </div>
+  {{/if}}
   {{#each this.columns}}
   <td>
     <div class = "square">
@@ -65,7 +67,7 @@ This is your board:
   </td>
   {{/each}}
   <br>
-</tr>
+</div>
 {{/each}}
 </template>
 

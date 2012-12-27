@@ -36,4 +36,24 @@ Meteor.methods( {
   }
 });
 
+  var board = function () {
+  var width = 3;
+  var height = 3;
+    var board = {}
+    board.rows = [];
+    for (var row=0; row<height; row++) {
+      board.rows[row] = {};
+      board.rows[row].row_number = row
+        board.rows[row].columns = []
+      for (var column=0; column<width; column++) {
+        var output = "you're at row " + row + " and column " + column;
+        console.log(output);
+        console.log(board);
+        //board.rows[row][column]= "
+        board.rows[row].columns[column] = "look at me I'm row " + row + " and column" + column;
+      }
+    }
+    return board
+  }
+
 
