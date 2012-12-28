@@ -6,15 +6,13 @@ Meteor.methods( {
                   });
     Players.update({}, {$set: {game_id: game_id}}, {multi: true});
 
-    var the_fortress = Tiles.insert({game: game_id,
+    var the_fortress = Tiles.insert(
+    { game_id: game_id,
       x: 0,
       y: 0,
+      type: "HOLY",
     });
-
-    var board = [];
-    board[0] = [];
-    board[0][0] = the_fortress; //this should be calculated dynamically
-
+    console.log("Let it begin.");
     return game_id;
   },
 });

@@ -46,7 +46,7 @@
       prestige remaining: {{prestige_remaining}}
       {{>board}}
       {{#each players}}
-        <div class="player">Name:  {{name}}</div>
+        <div class="player">Name:  {{name}}  Prestige: {{prestige}}</div>
       {{/each}}
     {{/if}}
   </div>
@@ -61,8 +61,8 @@ This is your board:
   {{/if}}
   {{#each this.columns}}
   <td>
-    <div class = "square">
-     {{this}}
+    <div class = "square {{type}}">
+      {{tile}}
     </div>
   </td>
   {{/each}}
