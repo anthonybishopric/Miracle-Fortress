@@ -2,15 +2,14 @@
 //
 
 Meteor.startup(function(){
-  Players.remove({}); //scaffolding, TODO: clean this up when you start designing #lobby
+  //Players.remove({}); //scaffolding, TODO: clean this up when you start designing #lobby
   var player_id = Players.insert({name: "Peter"});
   Session.set('player_id', player_id);
   //TODO: Players can, you know, log in
 
   //for now, automatically create a game and put a player in it
-  var game_id = Games.insert({prestige_remaining: 40});
+ // var game_id = Games.insert({prestige_remaining: 40});
 
-  Players.update({game_id: null}, {$set: {game_id: game_id, prestige: 0}});
 
 
   Meteor.autosubscribe(function () {
@@ -24,6 +23,11 @@ Meteor.startup(function(){
 
 var player = function() {
   return Players.findOne(Session.get('player_id'));
+};
+
+var test = function() {
+  console.log("yes?");
+  Meteor.call("test_function");
 };
 
 var game = function() {
@@ -97,7 +101,7 @@ Template.game.prestige_remaining = function() {
 };
 
 Template.game.players = function() {
-  return game().players;
+  return Players.find({game_id: game()._id}).fetch();
 };
 
 //do we need this?

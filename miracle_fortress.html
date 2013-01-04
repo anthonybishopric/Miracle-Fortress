@@ -46,7 +46,8 @@
       prestige remaining: {{prestige_remaining}}
       {{>board}}
       {{#each players}}
-        <div class="player">Name:  {{name}}  Prestige: {{prestige}}</div>
+        <div class="player">Name:  {{name}} <div>
+        <div> Prestige: {{prestige}}</div>
       {{/each}}
     {{/if}}
   </div>
@@ -55,7 +56,7 @@
 <template name="board">
 This is your board: 
 {{#each rows}}
-<div name="row">
+<div class="row">
   {{#if offset}}
   <div class = "half-square" > offset!  </div>
   {{/if}}
@@ -66,7 +67,6 @@ This is your board:
     </div>
   </td>
   {{/each}}
-  <br>
 </div>
 {{/each}}
 </template>
